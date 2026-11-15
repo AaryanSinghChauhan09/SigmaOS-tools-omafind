@@ -1,0 +1,9 @@
+[package]
+name = "sigmaos-tools-omafind"
+version = "0.1.0"
+edition = "2021"
+authors = ["Aaryan Singh Chauhan <aaryansinghchauhan@sigmaos.internal>"]
+description = "Local on-device semantic file search using vector similarity and lexical ranking"
+license = "MIT"
+
+[dependencies]

@@ -1,0 +1,1 @@
+# SigmaOS-tools-omafind\n\nLocal on-device semantic file search engine (omacom/omafind parity).\n\nPart of the SigmaOS sovereign ecosystem.\n
