@@ -3,7 +3,7 @@ name = "SigmaOS-tools-omafind"
 tier = 2
 stability = "scaffold"
 language = "rust"
-description = "tools-omafind component"
+description = "tools omafind component"
 upstream = []
 
 [contract]
