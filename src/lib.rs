@@ -1,3 +1,4 @@
+#![forbid(unsafe_code)]
 //! SigmaOS Tools Omafind - Local semantic and lexical file search engine.
 
 use std::collections::HashMap;
@@ -191,5 +192,40 @@ mod tests {
         let sem_hits = idx.search_semantic(&[0.85, 0.15, 0.0], 1);
         assert_eq!(sem_hits[0].path, PathBuf::from("/home/user/beach.png"));
         assert!(sem_hits[0].score > 0.9);
+    }
+}
+
+
+#[cfg(test)]
+mod oma_find_extra_tests {
+    use super::*;
+
+    #[test]
+    fn test_empty_query_search_aaa() {
+        // Arrange
+        let mut idx = SearchIndex::new();
+        idx.index_doc("/a.txt", "Title", "Some content", vec![0.5]);
+        // Act
+        let hits_lex = idx.search_lexical("");
+        let hits_sem = idx.search_semantic(&[], 5);
+        // Assert
+        assert!(hits_lex.is_empty());
+        assert!(hits_sem.is_empty());
+    }
+
+    #[test]
+    fn test_zero_vector_similarity_aaa() {
+        // Arrange & Act
+        let score = cosine_similarity(&[0.0, 0.0], &[0.0, 0.0]);
+        // Assert
+        assert_eq!(score, 0.0);
+    }
+
+    #[test]
+    fn test_dimension_mismatch_similarity_aaa() {
+        // Arrange & Act
+        let score = cosine_similarity(&[1.0, 0.0], &[1.0, 0.0, 0.0]);
+        // Assert
+        assert_eq!(score, 0.0);
     }
 }
